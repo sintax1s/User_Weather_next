@@ -16,11 +16,12 @@ const LoadMore = ({setUsers, users}) => {
       const timeoutId = setTimeout(() => {
         getUsers(page)
           .then(data => {
-            console.log(data);
             setUsers(prev => [...prev, ...data])
             page++;
           })
       }, delay);
+
+      return () => clearTimeout(timeoutId);
     }
   }, [inView, setUsers]);
 
