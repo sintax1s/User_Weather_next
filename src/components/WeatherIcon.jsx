@@ -13,7 +13,7 @@ const WeatherIcon = ({isDay, weatherCode}) => {
       case 2:
         return `/${timePrefix}PartyCloudy.png`;
       case 3:
-        return `/DayOvercast.png`;
+        return `/${timePrefix}Overcast.png`;
       case 45:
       case 48:
         return `/Fog.png`;

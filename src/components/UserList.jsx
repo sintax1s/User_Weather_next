@@ -1,27 +1,23 @@
 import React from 'react';
 import UserCard from './UserCard';
 
-const UserList = ({users}) => {
-  console.log(users);
+const UserList = ({users, setUsers}) => {
   return (
     <>
-      {users ? (
-        users.map((user) => (
+      {users.map((user) => (
          <UserCard            
-            key={user.login.uuid}
+            key={user.login?.uuid || user.id}
             name={user.name}
-            location={user.location} 
+            coordinates={user.coordinates}
+            location={user.location}
             email={user.email} 
             gender={user.gender}
-            profileImage={user.picture.medium}
+            profileImage={user.picture?.medium || user.profileImage}
             weather={user.weather}
+            id={user.login?.uuid || user.id}
+            setUsers={setUsers}
           />
-      ))
-      )
-      : (
-        <p>No available users!</p>
-      )
-      }
+        ))}
     </>
   )
 }

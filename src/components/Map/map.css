@@ -1,0 +1,8 @@
+.leafletContainer {
+  height: 100vh;
+}
+
+.leaflet-marker-icon {
+  border-radius: 50%;
+  border: 1px solid #000;
+}

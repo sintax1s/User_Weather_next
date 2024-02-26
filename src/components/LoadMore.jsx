@@ -3,20 +3,15 @@
 import { getUsers } from '@/actions/getUsers';
 import React, { useEffect, useState } from 'react';
 import { useInView } from "react-intersection-observer";
-import UserList from './UserList';
-import UserCard from './UserCard';
-import axios from 'axios';
-
+import CircularProgress from '@mui/material/CircularProgress';
 let page = 2;
 
-const LoadMore = () => {
+const LoadMore = ({setUsers, users}) => {
   const { ref, inView } = useInView();
-
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     if (inView) {
-      const delay = 500;
+      const delay = 1000;
 
       const timeoutId = setTimeout(() => {
         getUsers(page)
@@ -27,12 +22,15 @@ const LoadMore = () => {
           })
       }, delay);
     }
-  }, [inView, users]);
+  }, [inView, setUsers]);
 
   return (
     <>
-      <UserList users={users} />
-      <div ref={ref}></div>
+      {!!users.length && (
+        <div ref={ref} className='flex justify-center'>
+          {inView && <CircularProgress />}
+        </div>
+      )}
     </>
   );
 }
